@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "lib": ["DOM", "ESNext"],
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "rootDir": "./Typescript/",
+        "outDir": "./",
+        "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "./Types/"
+    },
+    "include": ["./Typescript/*.ts"],
+    "exclude": ["./node_modules/", "./*.js"]
+}
