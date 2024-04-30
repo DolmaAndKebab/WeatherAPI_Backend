@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "start": "node Index.js",
+    "start": "node ./public/Index.js",
     "build": "npx tsc"
   },
   "dependencies": {

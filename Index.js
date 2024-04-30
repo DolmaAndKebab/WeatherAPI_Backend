@@ -16,59 +16,80 @@ import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 dotenv.config();
+
 const app = express();
+
 const PORT = process.env.Port || 3000 || 5173;
-const APIKey = process.env.APIKey ||
-    "252koe0291kzoaslfj301" ||
-    "feok2015015jfdozowi2j5101op1" ||
-    undefined;
-app.use(cors({
+
+const APIKey =
+  process.env.APIKey ||
+  "252koe0291kzoaslfj301" ||
+  "feok2015015jfdozowi2j5101op1" ||
+  undefined;
+
+
+app.use(
+  cors({
     origin: process.env.Origin?.toString(),
     optionsSuccessStatus: 200,
-}));
-app.use(helmet.contentSecurityPolicy({
+  })
+);
+
+
+app.use(
+  helmet.contentSecurityPolicy({
     directives: {
-        defaultSrc: ["'self'", "https:"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://apis.google.com'],
-    }
-}));
+      defaultSrc: ["'self'", "https:"],
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "'unsafe-eval'",
+        "https://apis.google.com",
+      ],
+    },
+  })
+);
 const CheckAPIKey = (Key) => {
-    return Key === process.env.backend_Key;
+  return Key === process.env.backend_Key;
 };
+
+
 const MiddleWare = (req, res, next) => {
-    const APIKey = req.query.key;
-    const City = req.query.city;
-    if (!APIKey || !CheckAPIKey(APIKey)) {
-        return res.status(401).json({ error: "Invaild API Key!" });
-    }
-    ;
-    if (!City) {
-        return res.status(404).json({ error: "No city provided!" });
-    }
-    ;
-    next();
+  const APIKey = req.query.key;
+  const City = req.query.city;
+  if (!APIKey || !CheckAPIKey(APIKey)) {
+    return res.status(401).json({ error: "Invaild API Key!" });
+  }
+  if (!City) {
+    return res.status(404).json({ error: "No city provided!" });
+  }
+  next();
 };
+
+
 app.use(MiddleWare);
 app.get("/", (req, res) => {
-    res.json({ Backend: "Back end Service." });
+  res.json({ Backend: "Back end Service." });
 });
+
+
 app.get("/weather", async (req, res) => {
-    const city = req.query.city;
-    const API = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
-    try {
-        const response = await fetch(API);
-        if (!response.ok) {
-            console.error(`[ERROR]: HTTP ERROR. status: ${response.status}`);
-        }
-        const data = await response.json();
-        res.json(data);
+  const city = req.query.city;
+  const API = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+  try {
+    const response = await fetch(API);
+    if (!response.ok) {
+      console.error(`[ERROR]: HTTP ERROR. status: ${response.status}`);
     }
-    catch (error) {
-        console.error(`[ERROR]: FAILED TOO SEND REQUEST. ${error}`);
-        res.json({ error: "FAILED TO SEND API REQUEST!" });
-    }
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error(`[ERROR]: FAILED TOO SEND REQUEST. ${error}`);
+    res.json({ error: "FAILED TO SEND API REQUEST!" });
+  }
 });
+
+
 app.listen(PORT, () => {
-    console.log(`[BACKEND]: LISTENING ON PORT ${PORT}.`);
+  console.log(`[BACKEND]: LISTENING ON PORT ${PORT}.`);
 });
-//# sourceMappingURL=Index.js.map
