@@ -41,10 +41,13 @@ app.use(
       defaultSrc: ["'self'", "https:"],
       scriptSrc: [
         "'self'",
-        "'unsafe-inline'",
-        "'unsafe-eval'",
+        "https:",
         "https://apis.google.com",
       ],
+      "style-src": ["'none'"],
+      "img-src": ["'none'"],
+      "font-src": ["'none'"],
+      "connect-src": ["'self'", "https:"],
     },
   })
 );
