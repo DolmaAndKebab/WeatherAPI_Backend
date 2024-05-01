@@ -35,7 +35,6 @@ app.use(
   })
 );
 
-
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -49,6 +48,7 @@ app.use(
     },
   })
 );
+
 const CheckAPIKey = (Key) => {
   return Key === process.env.backend_Key;
 };
