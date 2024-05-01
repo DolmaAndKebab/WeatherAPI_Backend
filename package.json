@@ -1,0 +1,33 @@
+{
+  "name": "weather-app-apikey",
+  "version": "1.0.0",
+  "description": "A simple way I created to Handle OpenWeatherMap API in the front end.",
+  "main": "./Index.js",
+  "scripts": {
+    "test": "vitest",
+    "start": "node .",
+    "build": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DolmaAndKebab/WeatherAPI_Backend.git"
+  },
+  "keywords": [
+    "Javascript",
+    "JS",
+    "API",
+    "Express"
+  ],
+  "author": "DolmaAndKebab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DolmaAndKebab/WeatherAPI_Backend/issues"
+  },
+  "homepage": "https://github.com/DolmaAndKebab/WeatherAPI_Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0"
+  }
+}
